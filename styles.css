@@ -71,4 +71,8 @@ button:hover {
 
 .hole.active img {
   transform: scale(1.1);
+  cursor: pointer;
+}
+.hole img.clicked {
+  border: 4px solid tomato;
 }

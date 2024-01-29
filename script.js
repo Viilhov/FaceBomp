@@ -1,9 +1,14 @@
 // Selecting elements from the HTML
 const startButton = document.getElementById("startButton");
 const scoreDisplay = document.getElementById("score");
-const timeDisplay = document.getElementById("time");
-const messageDisplay = document.getElementById("message");
+const timeDisplay = document.getElementById("timer");
+
 const holes = document.querySelectorAll(".hole");
+
+// Sound effects const
+const bompSound = document.getElementById("bompSound");
+const gameEndSound = document.getElementById("gameEndSound");
+const gameEndHighSound = document.getElementById("gameEndHighSound");
 
 let score = 0;
 let time = 30;
@@ -49,19 +54,26 @@ function startGame() {
 
   // Display the initial score and time
   scoreDisplay.textContent = `Score: ${score}`;
-  timeDisplay.textContent = `Time left: ${time} seconds`;
+  timeDisplay.textContent = `Time left: ${time}`;
+  startButton.textContent = `Playing`;
 
   // Start the countdown timer
   countdown = setInterval(() => {
     time--;
-    timeDisplay.textContent = `Time left: ${time} seconds`;
+    timeDisplay.textContent = `Time left: ${time}`;
 
     // End the game when time is up
     if (time === 0) {
       clearInterval(countdown);
       isPlaying = false;
       startButton.disabled = false;
-      messageDisplay.textContent = getMessage();
+      timeDisplay.textContent = getMessage();
+      startButton.textContent = `Start Game`;
+      if (score > 9) {
+        gameEndHighSound.play();
+      } else {
+        gameEndSound.play();
+      }
     }
   }, 1000);
 
@@ -79,6 +91,17 @@ holes.forEach((hole) => {
       hole.classList.remove("active");
       score++;
       scoreDisplay.textContent = `Score: ${score}`;
+      bompSound.currentTime = 0;
+      bompSound.play();
+
+      // Add a red border to the clicked image
+      const image = hole.querySelector("img");
+      image.classList.add("clicked");
+
+      // Remove the red border after a short delay
+      setTimeout(() => {
+        image.classList.remove("clicked");
+      }, 300);
     }
   });
 });

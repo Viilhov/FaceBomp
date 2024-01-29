@@ -14,8 +14,8 @@
     <button id="startButton">Start Game</button>
     <p id="score">Score: 0</p>
 
-    <div id="timer">Time left: <span id="time">30</span> seconds</div>
-    <div id="message"></div>
+    <div id="timer">Time left: <span id="time">30</span></div>
+
 
     <div class="game-board">
         <div class="hole">
@@ -36,6 +36,9 @@
         <div class="hole">
             <img src="photo.png" alt="Face 6">
         </div>
+        <audio id="bompSound" src="sounds/bomp.wav"></audio>
+        <audio id="gameEndSound" src="sounds/game-end.wav"></audio>
+        <audio id="gameEndHighSound" src="sounds/game-end_high.wav"></audio>
     </div>
 
     <script src="script.js"></script>
