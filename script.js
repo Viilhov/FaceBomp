@@ -69,7 +69,7 @@ function startGame() {
       startButton.disabled = false;
       timeDisplay.textContent = getMessage();
       startButton.textContent = `Start Game`;
-      if (score > 9) {
+      if (score > 20) {
         gameEndHighSound.play();
       } else {
         gameEndSound.play();
